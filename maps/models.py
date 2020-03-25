@@ -37,7 +37,7 @@ class Place(models.Model):
     coord_v = models.FloatField()
     coord_h = models.FloatField()
     status = models.ForeignKey(PlaceStatus, on_delete=models.CASCADE)
-    
+
 
     def __unicode__(self):
         return self.name

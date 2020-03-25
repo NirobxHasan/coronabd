@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'django.contrib.gis',
-    'maps','djgeojson'
+    'maps','services'
 ]
 # SERIALIZATION_MODULES = {
 #     "geojson": "django.contrib.gis.serializers.geojson",

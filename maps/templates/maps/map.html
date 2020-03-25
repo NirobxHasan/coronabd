@@ -36,7 +36,9 @@
       .up{
         top:100px;
       }
-
+      .text{
+        font-size:15px;
+      }
       </div>
     </style>
     {% endblock %}
@@ -56,7 +58,7 @@
                     <img class="marker-hospital"  alt="">
                   </div>
                   <div class="col ">
-                    <p class="count">Total Hospital: </p>
+                    <p class="count">Total Hospital: <b class="text"> {{counter.total_hospital}}</b></p>
                     <!-- <p class="count">Today Death: </p> -->
                   </div>
                 </div>
@@ -67,8 +69,8 @@
                 <img class="marker-coronacase"  alt="">
               </div>
               <div class="col ">
-                <p class="count">Today Confirmed: </p>
-                <p class="count">Total Confirmed: </p>
+                <p class="count">Today Confirmed: <b class="text">{{counter.today_confirmed}}</b></p>
+                <p class="count">Total Confirmed: <b class="text"> {{counter.total_confirmed}}</b></p>
               </div>
             </div>
           </div>
@@ -78,8 +80,8 @@
                 <img class="marker-death"  alt="">
               </div>
               <div class="col ">
-                <p class="count">Today Deaths: </p>
-                <p class="count">Total Deaths: </p>
+                <p class="count">Today Deaths: <b class="text"> {{counter.today_death}</b></p>
+                <p class="count">Total Deaths: <b class="text"> {{counter.total_death}}</b></p>
               </div>
             </div>
           </div>
