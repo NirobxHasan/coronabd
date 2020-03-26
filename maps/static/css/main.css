@@ -5,8 +5,8 @@ body {
   margin-top: 5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+h2, h3, h4, h5, h6 {
+  color:#343332;
 }
 
 ul {
@@ -105,6 +105,39 @@ cursor: pointer;
 }
 .marker-death {
 background-image: url(../pictures/death.png);
+background-size: cover;
+width: 40px;
+height: 60px;
+/* border-radius: 50%; */
+cursor: pointer;
+}
+
+.marker-lockdown {
+background-image: url(../pictures/lockdown.png);
+background-size: cover;
+width: 40px;
+height: 60px;
+/* border-radius: 50%; */
+cursor: pointer;
+}
+.marker-quarantine {
+background-image: url(../pictures/quar2.png);
+background-size: cover;
+width: 40px;
+height: 60px;
+/* border-radius: 50%; */
+cursor: pointer;
+}
+.marker-isolation {
+background-image: url(../pictures/isolation.png);
+background-size: cover;
+width: 40px;
+height: 60px;
+/* border-radius: 50%; */
+cursor: pointer;
+}
+.marker-recovery {
+background-image: url(../pictures/winner.png);
 background-size: cover;
 width: 40px;
 height: 60px;

@@ -19,9 +19,15 @@ def map(request):
     hospital = Place.objects.filter(status=1)
     deaths = Place.objects.filter(status=2)
     corona_case = Place.objects.filter(status=3)
+    quarantine = Place.objects.filter(status=4)
+    isolation = Place.objects.filter(status=5)
+    lockdown = Place.objects.filter(status=6)
     counter= Counter.objects.first()
     return render(request, 'maps/map.html',
                 {'hospital': hospital,
                 'deaths': deaths,
                 'corona_case': corona_case,
+                'quarantine':quarantine,
+                'isolation':isolation,
+                'lockdown':lockdown,
                 'counter':counter})

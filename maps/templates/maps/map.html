@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <style>
     	body { margin: 0; padding: 0; }
-    	#map { position: absolute; top: 0; bottom: 10%; width: 100%; }
+    	#map { position: absolute; top: 0; bottom: 15%; width: 100%; }
       div.absolute {
         position: absolute;
         top: 90%;
@@ -37,17 +37,24 @@
         top:100px;
       }
       .text{
-        font-size:15px;
+        font-size:20px;
+        color:#d39e00;
       }
-      </div>
+      .col{
+        padding:1px;
+      }
+      .col-sm{
+        padding:10px;
+      }
+
     </style>
     {% endblock %}
 
 {% block content %}
-{% load static %}
+
 
     <div id="map"></div>
-    <br /><br/><br/>
+
     <div class="absolute">
       <div class="container">
 
@@ -69,7 +76,7 @@
                 <img class="marker-coronacase"  alt="">
               </div>
               <div class="col ">
-                <p class="count">Today Confirmed: <b class="text">{{counter.today_confirmed}}</b></p>
+                <p class="count">New Confirmed: <b class="text">{{counter.today_confirmed}}</b></p>
                 <p class="count">Total Confirmed: <b class="text"> {{counter.total_confirmed}}</b></p>
               </div>
             </div>
@@ -80,15 +87,65 @@
                 <img class="marker-death"  alt="">
               </div>
               <div class="col ">
-                <p class="count">Today Deaths: <b class="text"> {{counter.today_death}</b></p>
+                <p class="count">New Deaths: <b class="text"> {{counter.today_death}}</b></p>
                 <p class="count">Total Deaths: <b class="text"> {{counter.total_death}}</b></p>
               </div>
             </div>
           </div>
-        </div>
 
         </div>
+        <br/>
+        <div class="row">
+          <div class="col-sm">
+                <div class="row">
+                  <div class="col order1" >
+                    <img class="marker-recovery"  alt="">
+                  </div>
+                  <div class="col ">
+                    <p class="count">New Recoverd: <b class="text"> {{counter.today_recovered}}</b></p>
+                    <p class="count">Total Recoverd: <b class="text"> {{counter.total_recovered}}</b></p>
+
+                  </div>
+                </div>
+            </div>
+          <div class="col-sm">
+            <div class="row">
+              <div class="col order1" >
+                <img class="marker-isolation"  alt="">
+              </div>
+              <div class="col ">
+
+                <p class="count">Present Isolation: <b class="text">{{counter.present_isolation}}</b></p>
+                <!-- <p class="count">Exempt Isolation: <b class="text">{{counter.Exempt_isolation}}</b></p> -->
+                <p class="count">Total Isolation: <b class="text">{{counter.total_isolation}}</b></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="row">
+              <div class="col order1" >
+                <img class="marker-quarantine"  alt="">
+              </div>
+              <div class="col ">
+                <p class="count">Present Quarantine: <b class="text">{{counter.present_quarantine}}</b></p>
+                <!-- <p class="count">Exempt Quarantine: <b class="text">{{counter.Exempt_quarantine}}</b></p> -->
+                <p class="count">Total Quarantine: <b class="text">{{counter.total_quarantine}}</b></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
       </div>
+
+
+
+
+
+
+
+
+
 
     <script>
     	mapboxgl.accessToken = 'pk.eyJ1Ijoibmlyb2J4YWhhc2FuIiwiYSI6ImNrODVyMnJvZzA3cXMzZmxqbWZjY3VoZm8ifQ.E1-s6RIF6vy8vle7Lraj0A';
@@ -131,7 +188,7 @@
     new mapboxgl.Marker(el)
     .setLngLat(marker.geometry.coordinates)
     .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+    .setHTML('<h5>' + marker.properties.title + '</h5><p>' + marker.properties.description + '</p>'))
     .addTo(map);
     });
 
@@ -168,6 +225,9 @@
     .addTo(map);
     });
 
+    
+    
+
     var geojson_death = {
       type: 'FeatureCollection',
       features: [
@@ -192,6 +252,111 @@
     // create a DOM element for the marker
     var el = document.createElement('div');
     el.className = 'marker-death';
+
+    // add marker to map
+    new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+    .addTo(map);
+    });
+
+    var geojson_quarantine = {
+      type: 'FeatureCollection',
+      features: [
+      {% for i in quarantine %}
+          {
+          type: 'Feature',
+          geometry: {
+              type: 'Point',
+              coordinates: [{{ i.coord_h }}, {{ i.coord_v }}]
+          },
+          properties: {
+              title: '{{ i.name }}',
+              description: '{{ i.status }}'
+          }
+          },
+      {% endfor %}
+      ]
+      };
+
+      // add markers to map
+    geojson_quarantine.features.forEach(function(marker) {
+    // create a DOM element for the marker
+    var el = document.createElement('div');
+    el.className = 'marker-quarantine';
+
+    // add marker to map
+    new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+    .addTo(map);
+    });
+
+
+
+    //isolation
+
+    var geojson_isolation = {
+      type: 'FeatureCollection',
+      features: [
+      {% for i in isolation %}
+          {
+          type: 'Feature',
+          geometry: {
+              type: 'Point',
+              coordinates: [{{ i.coord_h }}, {{ i.coord_v }}]
+          },
+          properties: {
+              title: '{{ i.name }}',
+              description: '{{ i.status }}'
+          }
+          },
+      {% endfor %}
+      ]
+      };
+
+      // add markers to map
+    geojson_isolation.features.forEach(function(marker) {
+    // create a DOM element for the marker
+    var el = document.createElement('div');
+    el.className = 'marker-isolation';
+
+    // add marker to map
+    new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+    .addTo(map);
+    });
+
+
+    //lockdown
+    var geojson_lockdown = {
+      type: 'FeatureCollection',
+      features: [
+      {% for i in lockdown %}
+          {
+          type: 'Feature',
+          geometry: {
+              type: 'Point',
+              coordinates: [{{ i.coord_h }}, {{ i.coord_v }}]
+          },
+          properties: {
+              title: '{{ i.name }}',
+              description: '{{ i.status }}'
+          }
+          },
+      {% endfor %}
+      ]
+      };
+
+      // add markers to map
+    geojson_lockdown.features.forEach(function(marker) {
+    // create a DOM element for the marker
+    var el = document.createElement('div');
+    el.className = 'marker-lockdown';
 
     // add marker to map
     new mapboxgl.Marker(el)
