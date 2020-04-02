@@ -33,7 +33,7 @@ class PlaceStatus(models.Model):
 
 
 class Place(models.Model):
-    name = models.CharField(max_length=32)
+    name = models.CharField(max_length=200)
     coord_v = models.FloatField()
     coord_h = models.FloatField()
     status = models.ForeignKey(PlaceStatus, on_delete=models.CASCADE)
