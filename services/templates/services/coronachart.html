@@ -1,0 +1,296 @@
+{% extends 'maps/navbar.html' %}
+{% load static %}
+
+
+{% block title %}
+club ranking
+{% endblock title %}
+
+    
+{% block header %}
+<!-- #Chartjs -->
+    <!-- semantic UI -->
+    <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+{% endblock %}
+
+{% block script %}{
+<script>
+    $(document).ready(function(){
+
+        //Day Basis 
+        var ctx = document.getElementById('dailyBased').getContext('2d');
+        var color=["#bf0000","#99008c","#00C2A8","#8c4d15","#8bc34a","#607d8b","#009688"];
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Death',
+                    backgroundColor: "transparent",
+                    borderColor: color[0],
+                    pointBackgroundColor: color[0],
+                    pointBorderColor: color[0],
+                    pointHoverBackgroundColor:color[0],
+                 pointHoverBorderColor: color[0],
+                    data: [{% for item in qs %}{{item.today_death}},{% endfor %}],
+                
+                    borderColor: color[0],
+                
+                }, {
+                    label: 'Case',
+                    backgroundColor: "transparent",
+                    borderColor: color[1],
+                    pointBackgroundColor: color[1],
+                    pointBorderColor: color[1],
+                    pointHoverBackgroundColor:color[1],
+                    pointHoverBorderColor: color[1],
+                    data: [{% for item in qs %}{{item.today_confirmed}},{% endfor %}],
+                    borderColor: color[1],
+
+                    // Changes this dataset to become a line
+                    type: 'line'
+                },
+                {
+                    label: 'Recovered',
+                    backgroundColor: "transparent",
+                    borderColor: color[2],
+                    pointBackgroundColor: color[2],
+                    pointBorderColor: color[2],
+                    pointHoverBackgroundColor:color[2],
+                    pointHoverBorderColor: color[2],
+                    data: [{% for item in qs %}{{item.today_recovered}},{% endfor %}],
+                    borderColor: color[2],
+
+                    // Changes this dataset to become a line
+                    type: 'line'
+                }
+                
+                ],
+                labels: [{% for item in qs %}'{{item.date_posted|date:"d M Y"}}',{% endfor %}]
+            },
+            options: {
+
+                
+
+                scales: {
+
+
+                    xAxes: [{
+                        ticks: {
+                        autoSkip: false,
+                        maxRotation: 90,
+                        minRotation: 90
+                        }
+                    }],
+
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+
+
+
+        //Total Basis 
+        var ctx = document.getElementById('totalBased').getContext('2d');
+        var color=["#bf0000","#99008c","#00C2A8","#8c4d15","#8bc34a","#607d8b","#009688"];
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Total Death',
+                    backgroundColor: "transparent",
+                    borderColor: color[0],
+                    pointBackgroundColor: color[0],
+                    pointBorderColor: color[0],
+                    pointHoverBackgroundColor:color[0],
+                 pointHoverBorderColor: color[0],
+                    data: [{% for item in qs %}{{item.total_death}},{% endfor %}],
+                
+                    borderColor: color[0],
+                
+                }, {
+                    label: 'Total Case',
+                    backgroundColor: "transparent",
+                    borderColor: color[1],
+                    pointBackgroundColor: color[1],
+                    pointBorderColor: color[1],
+                    pointHoverBackgroundColor:color[1],
+                    pointHoverBorderColor: color[1],
+                    data: [{% for item in qs %}{{item.total_confirmed}},{% endfor %}],
+                    borderColor: color[1],
+
+                    // Changes this dataset to become a line
+                    type: 'line'
+                },
+                {
+                    label: 'Total Recovered',
+                    backgroundColor: "transparent",
+                    borderColor: color[2],
+                    pointBackgroundColor: color[2],
+                    pointBorderColor: color[2],
+                    pointHoverBackgroundColor:color[2],
+                    pointHoverBorderColor: color[2],
+                    data: [{% for item in qs %}{{item.total_recovered}},{% endfor %}],
+                    borderColor: color[2],
+
+                    // Changes this dataset to become a line
+                    type: 'line'
+                }
+                
+                ],
+                labels: [{% for item in qs %}'{{item.date_posted|date:"d M Y"}}',{% endfor %}]
+            },
+            options: {
+
+                
+
+                scales: {
+
+
+                    xAxes: [{
+                        ticks: {
+                        autoSkip: false,
+                        maxRotation: 90,
+                        minRotation: 90
+                        }
+                    }],
+
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+
+        //Total quarantine
+        var ctx = document.getElementById('totalQuarantine').getContext('2d');
+        var color=["#ff6384","#5959e6","#2babab","#8c4d15","#8bc34a","#607d8b","#009688"];
+
+        var myChart = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+                datasets: [{
+                    label: 'rader',
+                    backgroundColor: ["#ffbb00", "#78e602","#4e02e6"],
+                    data: [{{qs.last.total_quarantine}}, {{qs.last.released_quarantine}}, {{qs.last.present_quarantine}}],
+                
+                },
+                //  {
+                //     label: 'Line Dataset',
+                //     data: [12, 22],
+                //     borderColor: color[4],
+
+                //     // Changes this dataset to become a line
+                //     type: 'polarArea'
+               // }
+                ],
+                labels: [
+                    'Total Quarantine',
+                    'Released Quarantine',
+                    'Present Quarantine'
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+
+        //Total isolation
+        var ctx = document.getElementById('totalIsolation').getContext('2d');
+        var color=["#ff6384","#5959e6","#2babab","#8c4d15","#8bc34a","#607d8b","#009688"];
+
+        var myChart = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+                datasets: [{
+                    label: 'rader',
+                    backgroundColor: ["#4B4453", "#009EFA","#C34A36"],
+                    data: [{{qs.last.total_isolation}}, {{qs.last.released_isolation}}, {{qs.last.present_isolation}}],
+                
+                },
+                //  {
+                //     label: 'Line Dataset',
+                //     data: [12, 22],
+                //     borderColor: color[4],
+
+                //     // Changes this dataset to become a line
+                //     type: 'polarArea'
+               // }
+                ],
+                labels: [
+                    'Total Isolation',
+                    'Released Isolation',
+                    'Present Isolation'
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+
+
+
+    });
+</script>
+{% endblock script %}
+
+
+{% block content %}
+<br/> <br/>
+<br/> <br/> 
+<div class="container">
+
+    <div class="row">
+      <div class="col-sm">
+        <h1>Daily Based</h1>
+        <canvas id="dailyBased" width="400" height="400"></canvas>
+      </div>
+      <div class="col-sm">
+        <h1>Total Based</h1>
+        <canvas id="totalBased" width="400" height="400"></canvas>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <h1>Quarantine Chart</h1>  
+          <canvas id="totalQuarantine" width="400" height="400"></canvas>
+        </div>
+        <div class="col-sm">
+            <h1>Isolation Chart</h1> 
+          <canvas id="totalIsolation" width="400" height="400"></canvas>
+        </div>
+      </div>
+
+  </div>
+
+
+{% endblock content %}
