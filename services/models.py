@@ -33,3 +33,26 @@ class Myth(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     def __str__(self):
         return self.title
+
+
+class Coronacounter(models.Model):
+    today_confirmed = models.IntegerField()
+    total_confirmed = models.IntegerField()
+
+    today_recovered = models.IntegerField()
+    total_recovered = models.IntegerField()
+
+    today_death = models.IntegerField()
+    total_death = models.IntegerField()
+
+    total_quarantine = models.IntegerField(null=True)
+    released_quarantine = models.IntegerField(null=True)
+    present_quarantine = models.IntegerField(null=True)
+
+    total_isolation = models.IntegerField(null=True)
+    released_isolation = models.IntegerField(null=True)
+    present_isolation = models.IntegerField(null=True)
+    date_posted = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return str(self.date_posted.strftime("%d-%m-%Y"))
