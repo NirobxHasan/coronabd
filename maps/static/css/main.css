@@ -86,17 +86,17 @@ a.article-title:hover {
 
 
 
-
 .marker-hospital {
-background-image: url(../pictures/hospital.png);
-background-size: cover;
-width: 40px;
-height: 60px;
-/* border-radius: 50%; */
-cursor: pointer;
-}
+  background-image: url(../pictures/hospital.png);
+  background-size: cover;
+  width: 40px;
+  height: 60px;
+  /* border-radius: 50%; */
+  cursor: pointer;
+  }
+
 .marker-coronacase {
-background-image: url(../pictures/virus.png);
+background-image: url(../pictures/case.png);
 background-size: cover;
 width: 40px;
 height: 60px;
@@ -104,7 +104,7 @@ height: 60px;
 cursor: pointer;
 }
 .marker-death {
-background-image: url(../pictures/death.png);
+background-image: url(../pictures/deathbn.png);
 background-size: cover;
 width: 40px;
 height: 60px;

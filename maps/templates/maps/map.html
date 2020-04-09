@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <style>
     	body { margin: 0; padding: 0; }
-    	#map { position: absolute; top: 0; bottom: 15%; width: 100%; }
+    	#map { position: absolute; top: 9%; bottom: 0%; width: 100%; }
       div.absolute {
         position: absolute;
         top: 90%;
@@ -18,144 +18,47 @@
 
         background-color: #333333;
       }
-
-      .count{
+      #buttons {
+        width: 90%;
+        margin: 0 auto;
+      }
+      .button {
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        width: 20%;
+        padding: 8px;
+        border-radius: 3px;
+        margin-top: 10px;
+        font-size: 12px;
+        text-align: center;
         color: #fff;
-        margin-top: 0em;
-        margin-bottom: 0em;
-        margin-left: 10;
-        margin-right: 0;
+        background: #ee8a65;
+        font-family: sans-serif;
+        font-weight: bold;
       }
-      .row{
-          width: 100%;
 
-      }
-      .order1{
-        left:95px;
-      }
-      .up{
-        top:100px;
-      }
-      .text{
-        font-size:20px;
-        color:#d39e00;
-      }
-      .col{
-        padding:1px;
-      }
-      .col-sm{
-        padding:10px;
-      }
 
     </style>
     {% endblock %}
 
 {% block content %}
 
+ 
 
     <div id="map"></div>
-
-    <div class="absolute">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-sm">
-                <div class="row">
-                  <div class="col order1" >
-                    <img class="marker-hospital"  alt="">
-                  </div>
-                  <div class="col ">
-                    <p class="count">Total Hospital: <b class="text"> {{counter.total_hospital}}</b></p>
-                    <!-- <p class="count">Today Death: </p> -->
-                  </div>
-                </div>
-            </div>
-          <div class="col-sm">
-            <div class="row">
-              <div class="col order1" >
-                <img class="marker-coronacase"  alt="">
-              </div>
-              <div class="col ">
-                <p class="count">New Confirmed: <b class="text">{{counter.today_confirmed}}</b></p>
-                <p class="count">Total Confirmed: <b class="text"> {{counter.total_confirmed}}</b></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm">
-            <div class="row">
-              <div class="col order1" >
-                <img class="marker-death"  alt="">
-              </div>
-              <div class="col ">
-                <p class="count">New Deaths: <b class="text"> {{counter.today_death}}</b></p>
-                <p class="count">Total Deaths: <b class="text"> {{counter.total_death}}</b></p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <br/>
-        <div class="row">
-          <div class="col-sm">
-                <div class="row">
-                  <div class="col order1" >
-                    <img class="marker-recovery"  alt="">
-                  </div>
-                  <div class="col ">
-                    <p class="count">New Recoverd: <b class="text"> {{counter.today_recovered}}</b></p>
-                    <p class="count">Total Recoverd: <b class="text"> {{counter.total_recovered}}</b></p>
-
-                  </div>
-                </div>
-            </div>
-          <div class="col-sm">
-            <div class="row">
-              <div class="col order1" >
-                <img class="marker-isolation"  alt="">
-              </div>
-              <div class="col ">
-
-                <p class="count">Present Isolation: <b class="text">{{counter.present_isolation}}</b></p>
-                <!-- <p class="count">Exempt Isolation: <b class="text">{{counter.Exempt_isolation}}</b></p> -->
-                <p class="count">Total Isolation: <b class="text">{{counter.total_isolation}}</b></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm">
-            <div class="row">
-              <div class="col order1" >
-                <img class="marker-quarantine"  alt="">
-              </div>
-              <div class="col ">
-                <p class="count">Present Quarantine: <b class="text">{{counter.present_quarantine}}</b></p>
-                <!-- <p class="count">Exempt Quarantine: <b class="text">{{counter.Exempt_quarantine}}</b></p> -->
-                <p class="count">Total Quarantine: <b class="text">{{counter.total_quarantine}}</b></p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        </div>
-      </div>
-
-
-
-
-
-
-
-
-
 
     <script>
     	mapboxgl.accessToken = 'pk.eyJ1Ijoibmlyb2J4YWhhc2FuIiwiYSI6ImNrODVyMnJvZzA3cXMzZmxqbWZjY3VoZm8ifQ.E1-s6RIF6vy8vle7Lraj0A';
 
       var map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/dark-v10',
+      style: 'mapbox://styles/mapbox/streets-v11',
       center: [90.3563, 23.6850],
       zoom: 6
       });
+
+      
 
 
 
@@ -365,6 +268,16 @@
     .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
     .addTo(map);
     });
+
+
+    map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true
+          },
+            trackUserLocation: true
+        })
+      );
 
     </script>
 {% endblock %}
