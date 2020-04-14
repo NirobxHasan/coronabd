@@ -39,15 +39,23 @@
       }
 
 
+      
+
+
     </style>
     {% endblock %}
 
 {% block content %}
-
+      <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
+      <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css"
+      type="text/css"
+      />
  
 
     <div id="map"></div>
-
+   
     <script>
     	mapboxgl.accessToken = 'pk.eyJ1Ijoibmlyb2J4YWhhc2FuIiwiYSI6ImNrODVyMnJvZzA3cXMzZmxqbWZjY3VoZm8ifQ.E1-s6RIF6vy8vle7Lraj0A';
 
@@ -270,6 +278,17 @@
     });
 
 
+    
+
+
+
+
+    map.addControl(
+      new MapboxDirections({
+        accessToken: mapboxgl.accessToken
+      }),
+        'top-left'
+      );
     map.addControl(
         new mapboxgl.GeolocateControl({
           positionOptions: {
@@ -278,6 +297,8 @@
             trackUserLocation: true
         })
       );
+
+
 
     </script>
 {% endblock %}
