@@ -5,6 +5,7 @@ from services.views import CoronaChartView
 
 urlpatterns = [
     path('myths/',views.myths, name='myths'),
-     path('',CoronaChartView.as_view(), name='chart')
+    path('confirmedArea/',views.confirmedArea,name='confirmedArea'),
+    path('',CoronaChartView.as_view(), name='chart')
 
 ]

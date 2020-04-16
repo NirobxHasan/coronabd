@@ -45,14 +45,47 @@ class Coronacounter(models.Model):
     today_death = models.IntegerField()
     total_death = models.IntegerField()
 
-    total_quarantine = models.IntegerField(null=True)
-    released_quarantine = models.IntegerField(null=True)
-    present_quarantine = models.IntegerField(null=True)
+    total_quarantine = models.IntegerField(null=True,blank=True)
+    released_quarantine = models.IntegerField(null=True,blank=True)
+    present_quarantine = models.IntegerField(null=True,blank=True)
 
-    total_isolation = models.IntegerField(null=True)
-    released_isolation = models.IntegerField(null=True)
-    present_isolation = models.IntegerField(null=True)
+    total_isolation = models.IntegerField(null=True,blank=True)
+    released_isolation = models.IntegerField(null=True,blank=True)
+    present_isolation = models.IntegerField(null=True,blank=True)
     date_posted = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return str(self.date_posted.strftime("%d-%m-%Y"))
+
+
+
+
+
+
+class Division(models.Model):
+    division = models.CharField(max_length=32)
+
+    def __unicode__(self):
+        return self.division
+    def __str__(self):
+        return self.division
+
+
+class Area(models.Model):
+    division = models.ForeignKey(Division, on_delete=models.CASCADE)
+    district = models.CharField(max_length=220,default="Dhaka")
+    location = models.CharField(max_length=220,unique=True,null=True,blank=True)
+    confirmed_cases = models.IntegerField() 
+    up_case = models.IntegerField(null=True,blank=True)
+    last_update = models.DateTimeField(default=timezone.now,null=True,blank=True)
+
+
+    class Meta:
+        ordering = ['-confirmed_cases']
+     
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return '{}-{}'.format(self.location,self.district)
