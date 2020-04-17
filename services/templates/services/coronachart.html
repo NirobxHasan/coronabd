@@ -3,7 +3,7 @@
 
 
 {% block title %}
-club ranking
+
 {% endblock title %}
 
     
@@ -186,7 +186,9 @@ club ranking
             data: {
                 datasets: [{
                     label: 'rader',
+                    
                     backgroundColor: ["#ffbb00", "#78e602","#4e02e6"],
+                    
                     data: [{{qs.last.total_quarantine}}, {{qs.last.released_quarantine}}, {{qs.last.present_quarantine}}],
                 
                 },
@@ -206,6 +208,7 @@ club ranking
                 ]
             },
             options: {
+                
                 scales: {
                     yAxes: [{
                         ticks: {
@@ -222,7 +225,7 @@ club ranking
         var color=["#ff6384","#5959e6","#2babab","#8c4d15","#8bc34a","#607d8b","#009688"];
 
         var myChart = new Chart(ctx, {
-            type: 'polarArea',
+            type: 'doughnut',
             data: {
                 datasets: [{
                     label: 'rader',
