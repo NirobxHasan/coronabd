@@ -76,16 +76,16 @@ class Area(models.Model):
     district = models.CharField(max_length=220,default="Dhaka")
     location = models.CharField(max_length=220,unique=True,null=True,blank=True)
     confirmed_cases = models.IntegerField() 
-    up_case = models.IntegerField(null=True,blank=True)
+    up_case = models.IntegerField(blank=True,default=0)
     last_update = models.DateTimeField(default=timezone.now,null=True,blank=True)
 
 
     class Meta:
-        ordering = ['-confirmed_cases']
+        ordering = ['division','-confirmed_cases']
      
 
     def __unicode__(self):
         return self.name
 
     def __str__(self):
-        return '{}-{}'.format(self.location,self.district)
+        return '{}-{}-{}'.format(self.location,self.district,self.division)
