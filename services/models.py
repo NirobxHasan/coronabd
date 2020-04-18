@@ -81,7 +81,7 @@ class Area(models.Model):
 
 
     class Meta:
-        ordering = ['division','-confirmed_cases']
+        ordering = ['location','division','-confirmed_cases']
      
 
     def __unicode__(self):
@@ -89,3 +89,9 @@ class Area(models.Model):
 
     def __str__(self):
         return '{}-{}-{}'.format(self.location,self.district,self.division)
+
+   
+
+
+
+
