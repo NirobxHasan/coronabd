@@ -54,9 +54,16 @@ def confirmedArea(request):
 
     context={
         'areas':areas,
-        'Dhakacity_total':Dhakacity_total,
+        'Dhaka_total':Dhaka_total,
         'Chattogram_total':Chattogram_total,
-        'total':total
+        'Rangpur_total':Rangpur_total,
+        'Mymensingh_total':Mymensingh_total,
+        'Sylhet_total':Sylhet_total,
+        'Khulna_total':Khulna_total,
+        'Barishal_total':Barishal_total,
+        'Rajshahi_total':Rajshahi_total,
+        'Dhakacity_total':Dhakacity_total,
+        'total':total,
     }        
     return render(request, 'services/confirmedlist.html',context)
 
