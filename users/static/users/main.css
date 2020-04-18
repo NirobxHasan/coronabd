@@ -163,6 +163,9 @@
 h1{
   color: #fafafa
 }
+h3{
+    color: #fafafa
+}
 .card.people .card-info .desc {
     display: block;
     margin: 8px 14px 0 14px;
@@ -196,7 +199,7 @@ h1{
 }
 
 .card.hovercard .cardheader {
-    background-image: url(../users/card.jpg);
+    background-image: url(../users/covernew.png);
     background-color: white;
     background-size: cover;
     height: 135px;
@@ -209,7 +212,19 @@ h1{
 }
 
 .card.hovercard .avatar img {
-    background-image: url(../users/my_photo2.jpg);
+    background-image: url(../users/nirob.png);
+
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.5);
+}
+.card.hovercard .bikram img {
+    background-image: url(../users/bikram.jpg);
 
     width: 150px;
     height: 150px;
@@ -247,3 +262,7 @@ h1{
 }
 
 .btn{ border-radius: 50%; width:32px; height:32px; line-height:18px;  }
+
+
+
+
