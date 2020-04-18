@@ -6,12 +6,6 @@ def myths(request):
     myth = Myth.objects.all()
     return render(request, 'services/myths.html',{'myths':myth})
 
-
-def confirmedArea(request):
-    areas = Area.objects.all()
-    return render(request, 'services/confirmedlist.html',{'areas':areas})
-
-
 class CoronaChartView(TemplateView):
     template_name = 'services/coronachart.html'
 
@@ -20,6 +14,51 @@ class CoronaChartView(TemplateView):
         context["qs"] = Coronacounter.objects.all()
         return context
 
+
+
+def confirmedArea(request):
+    areas = Area.objects.all()
+    Dhaka_total = 0
+    Chattogram_total = 0
+    Rangpur_total = 0
+    Mymensingh_total = 0
+    Sylhet_total = 0
+    Khulna_total = 0
+    Barishal_total = 0
+    Rajshahi_total = 0
+    Dhakacity_total = 0
+    total = 0
+    for i in areas:
+        if i.division.division == "Dhaka Division" and i.district == 'Dhaka':
+            Dhakacity_total = Dhakacity_total + i.confirmed_cases
+        if i.division.division == "Dhaka Division":
+            Dhaka_total = Dhaka_total + i.confirmed_cases
+        if i.division.division == "Chattogram Division":
+            Chattogram_total = Chattogram_total + i.confirmed_cases    
+        if i.division.division == "Rangpur Division":
+           Rangpur_total = Rangpur_total + i.confirmed_cases
+        if i.division.division == "Mymensingh Division":
+            Mymensingh_total =  Mymensingh_total + i.confirmed_cases
+        if i.division.division == "Sylhet Division":
+            Sylhet_total = Sylhet_total + i.confirmed_cases      
+        if i.division.division == "Khulna Division":
+            Khulna_total = Khulna_total + i.confirmed_cases    
+        if i.division.division == "Barishal Division":
+            Barishal_total = Barishal_total + i.confirmed_cases
+        if i.division.division == "Rajshahi Division":
+            Rajshahi_total = Rajshahi_total + i.confirmed_cases    
+
+        total = total + i.confirmed_cases 
+            
+
+
+    context={
+        'areas':areas,
+        'Dhakacity_total':Dhakacity_total,
+        'Chattogram_total':Chattogram_total,
+        'total':total
+    }        
+    return render(request, 'services/confirmedlist.html',context)
 
 
 

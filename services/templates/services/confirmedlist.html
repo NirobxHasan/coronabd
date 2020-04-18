@@ -14,14 +14,15 @@
 {% endblock %}
 {% block content %}
   <div class="container">
+    
     <h2 align="center" style="color:rgb(223, 223, 223);"> COVID-19 Confirmed cases in Bangladesh</h2>
    <div class="container tab">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Dhaka City</a>
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Dhaka City <span class="badge badge-warning">Total: {{Dhakacity_total}}</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">All Division</a>
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">All Division <span class="badge badge-warning">Total: {{total}}</span></a>
         </li>
         </ul>
     </div>
@@ -31,9 +32,10 @@
     <div class="tab-content" id="pills-tabContent">
 
 
-
+        <br><br>
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-            <h2 style="color:rgb(223, 223, 223);">Dhaka City</h2>
+            <h2 style="color:rgb(223, 223, 223);">Dhaka City <span class="badge badge-warning">Total: {{Dhakacity_total}}</span></h2>
+            
             <table class="table table-dark">
                     <thead>
                         <tr>
@@ -61,7 +63,7 @@
 
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         <br>
-        <h2 style="color:rgb(223, 223, 223);">Dhaka Division</h2>        
+        <h2 style="color:rgb(223, 223, 223);">Dhaka Division <span class="badge badge-warning">Total: {{Dhaka_total}}</h2>        
         <table class="table table-dark">
                     <thead>
                         <tr>
@@ -85,7 +87,7 @@
             </table>
 
         <br>
-        <h2 style="color:rgb(223, 223, 223);">Chattogram Division</h2>        
+        <h2 style="color:rgb(223, 223, 223);">Chattogram Division <span class="badge badge-warning">Total: {{Chattogram_total}}</h2>        
         <table class="table table-dark">
                     <thead>
                         <tr>
@@ -109,7 +111,7 @@
         </table>
 
         <br>
-        <h2 style="color:rgb(223, 223, 223);">Rangpur Division</h2>        
+        <h2 style="color:rgb(223, 223, 223);">Rangpur Division <span class="badge badge-warning">Total: {{Rangpur_total}}</h2>        
         <table class="table table-dark">
                     <thead>
                         <tr>
@@ -132,7 +134,7 @@
                 </tbody>
             </table>
         <br>
-        <h2 style="color:rgb(223, 223, 223);">Mymensingh Division</h2>        
+        <h2 style="color:rgb(223, 223, 223);">Mymensingh Division <span class="badge badge-warning">Total: {{Mymensingh_total}}</h2>        
         <table class="table table-dark">
                     <thead>
                         <tr>
@@ -156,7 +158,7 @@
             </table>
 
         <br>
-        <h2 style="color:rgb(223, 223, 223);">Sylhet Division</h2>        
+        <h2 style="color:rgb(223, 223, 223);">Sylhet Division <span class="badge badge-warning">Total: {{Sylhet_total}}</h2>        
         <table class="table table-dark">
                     <thead>
                         <tr>
@@ -181,7 +183,7 @@
 
 
         <br>
-        <h2 style="color:rgb(223, 223, 223);">Khulna Division</h2>        
+        <h2 style="color:rgb(223, 223, 223);">Khulna Division <span class="badge badge-warning">Total: {{Khulna_total}}</h2>        
         <table class="table table-dark">
                     <thead>
                         <tr>
@@ -205,7 +207,7 @@
             </table>
 
         <br>
-        <h2 style="color:rgb(223, 223, 223);">Barishal Division</h2>        
+        <h2 style="color:rgb(223, 223, 223);">Barishal Division <span class="badge badge-warning">Total: {{Barishal_total}}</h2>        
         <table class="table table-dark">
                     <thead>
                         <tr>
@@ -230,7 +232,7 @@
 
 
         <br>
-        <h2 style="color:rgb(223, 223, 223);">Rajshahi Division</h2>        
+        <h2 style="color:rgb(223, 223, 223);">Rajshahi Division <span class="badge badge-warning">Total: {{Rajshahi_total}}</h2>        
         <table class="table table-dark">
                     <thead>
                         <tr>
