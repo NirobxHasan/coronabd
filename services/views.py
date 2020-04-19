@@ -28,6 +28,7 @@ def confirmedArea(request):
     Rajshahi_total = 0
     Dhakacity_total = 0
     total = 0
+    Unidentified_total = 0
     for i in areas:
         if i.division.division == "Dhaka Division" and i.district == 'Dhaka':
             Dhakacity_total = Dhakacity_total + i.confirmed_cases
@@ -46,7 +47,9 @@ def confirmedArea(request):
         if i.division.division == "Barishal Division":
             Barishal_total = Barishal_total + i.confirmed_cases
         if i.division.division == "Rajshahi Division":
-            Rajshahi_total = Rajshahi_total + i.confirmed_cases    
+            Rajshahi_total = Rajshahi_total + i.confirmed_cases
+        if i.division.division == "Undefined":
+            Unidentified_total =Unidentified_total + i.confirmed_cases        
 
         total = total + i.confirmed_cases 
             
@@ -64,6 +67,7 @@ def confirmedArea(request):
         'Rajshahi_total':Rajshahi_total,
         'Dhakacity_total':Dhakacity_total,
         'total':total,
+        'Unidentified_total':Unidentified_total
     }        
     return render(request, 'services/confirmedlist.html',context)
 
