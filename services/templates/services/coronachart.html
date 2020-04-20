@@ -37,7 +37,7 @@
                     pointBackgroundColor: color[0],
                     pointBorderColor: color[0],
                     pointHoverBackgroundColor:color[0],
-                 pointHoverBorderColor: color[0],
+                    pointHoverBorderColor: color[0],
                     data: [{% for item in qs %}{{item.today_death}},{% endfor %}],
                 
                     borderColor: color[0],
@@ -182,7 +182,7 @@
         var color=["#ff6384","#5959e6","#2babab","#8c4d15","#8bc34a","#607d8b","#009688"];
 
         var myChart = new Chart(ctx, {
-            type: 'polarArea',
+            type: 'pie',
             data: {
                 datasets: [{
                     label: 'rader',
@@ -259,10 +259,153 @@
             }
         });
 
+//modal graph
 
+        //daily-confirmed    
+        var color=["#474747"];
+        new Chart(document.getElementById("daily-confirmed"), {
+            type: 'bar',
+            data: {
+            labels: [{% for item in qs %}'{{item.date_posted|date:"d M"}}',{% endfor %}],
+            datasets: [
+                {
+                label: "Confirmed case",
+                backgroundColor: color[0],
+                data: [{% for item in qs %}{{item.today_confirmed}},{% endfor %}],
+                }
+            ]
+            },
+            options: {
+                scales: {
+
+
+                    xAxes: [{
+                        ticks: {
+                        autoSkip: true,
+                        maxRotation: 90,
+                        minRotation: 90
+                        }
+                    }],
+                    },
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Daily based Confirmed cases'
+            }
+            }
+        });
+
+
+        //daily-death    
+        var color=["#c70000"];
+        new Chart(document.getElementById("daily-death"), {
+            type: 'bar',
+            data: {
+            labels: [{% for item in qs %}'{{item.date_posted|date:"d M"}}',{% endfor %}],
+            datasets: [
+                {
+                label: "Death",
+                backgroundColor: color[0],
+                data: [{% for item in qs %}{{item.today_death}},{% endfor %}],
+                }
+            ]
+            },
+            options: {
+                scales: {
+
+
+                    xAxes: [{
+                        ticks: {
+                        autoSkip: true,
+                        maxRotation: 90,
+                        minRotation: 90
+                        }
+                    }],
+                    },
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Daily based Death cases'
+            }
+            }
+        });
+
+        //daily-recovered   
+        var color=["#009c05"];
+        new Chart(document.getElementById("daily-recovered"), {
+            type: 'bar',
+            data: {
+            labels: [{% for item in qs %}'{{item.date_posted|date:"d M"}}',{% endfor %}],
+            datasets: [
+                {
+                label: "Recovered",
+                backgroundColor: color[0],
+                data: [{% for item in qs %}{{item.today_recovered}},{% endfor %}],
+                }
+            ]
+            },
+            options: {
+                scales: {
+
+
+                    xAxes: [{
+                        ticks: {
+                        autoSkip: true,
+                        maxRotation: 90,
+                        minRotation: 90
+                        }
+                    }],
+                    },
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Daily based Recovered cases'
+            }
+            }
+        });
+        //daily-tested    
+        var color=["#00709c"];
+        new Chart(document.getElementById("daily-tested"), {
+            type: 'bar',
+            data: {
+            labels: [{% for item in qs %}'{{item.date_posted|date:"d M"}}',{% endfor %}],
+            datasets: [
+                {
+                label: "Tested",
+                backgroundColor: color[0],
+                data: [{% for item in qs %}{{item.today_tested}},{% endfor %}],
+                }
+            ]
+            },
+            options: {
+                scales: {
+
+
+                    xAxes: [{
+                        ticks: {
+                        autoSkip: true,
+                        maxRotation: 90,
+                        minRotation: 90
+                        }
+                    }],
+                    },
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Daily based Tested cases'
+            }
+            }
+        });
 
 
     });
+
+    
+
+
+
+
+
 </script>
 
 <style>
@@ -289,6 +432,9 @@
                     <h2 class="card-title text-center">{{qs.last.today_confirmed}}</h2>
                     
                 </div>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dailyconfirmed">
+                    Daily Based Confirmed Graph
+                </button>
                 </div>
             </div>
             <div class="col-md">
@@ -296,7 +442,11 @@
                     <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Today Death</h3></div>
                     <div class="card-body">
                         <h2 class="card-title text-center">{{qs.last.today_death}}</h2>
+                        
                     </div>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dailydeath">
+                        Daily Based Death Graph
+                    </button>
                 </div>
             </div>
             <div class="col-md">
@@ -304,7 +454,11 @@
                 <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Today Recovered</h3></div>
                 <div class="card-body">
                     <h2 class="card-title text-center">{{qs.last.today_recovered}}</h2>
+                    
                 </div>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dailyrecoverd">
+                    Daily Based Recovered Graph
+                </button>
                 </div>
             </div>
             <div class="col-md">
@@ -313,6 +467,9 @@
                     <div class="card-body">
                         <h2 class="card-title text-center">{{qs.last.today_tested}}</h2>
                     </div>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dailytested">
+                        Daily Based tested Graph
+                    </button>
                     </div>
                 </div>
         </div>
@@ -358,26 +515,111 @@
     <div class="row">
       <div class="col-sm">
         <h1>Total Based</h1>
-        <canvas id="totalBased" width="400" height="400"></canvas>
+        <canvas id="totalBased" width="400" height="300"></canvas>
        
       </div>
       <div class="col-sm">
         <h1>Daily Based</h1>
-        <canvas id="dailyBased" width="400" height="400"></canvas>
+        <canvas id="dailyBased" width="400" height="300"></canvas>
       </div>
     </div>
     <div class="row">
         <div class="col-sm">
             <h1>Quarantine Chart</h1>  
-          <canvas id="totalQuarantine" width="400" height="400"></canvas>
+          <canvas id="totalQuarantine" width="400" height="300"></canvas>
         </div>
         <div class="col-sm">
             <h1>Isolation Chart</h1> 
-          <canvas id="totalIsolation" width="400" height="400"></canvas>
+          <canvas id="totalIsolation" width="400" height="300"></canvas>
         </div>
       </div>
-
+     
   </div>
 
+<!-- Modal -->
+<!-- daily confirmed_case -->
+<div class="modal fade" id="dailyconfirmed" tabindex="-1" role="dialog" aria-labelledby="dailyconfirmedTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dailyconfirmedTitle"> Daily Based Confirmed Graph</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <canvas id="daily-confirmed" width="800" height="500"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- daily Death_cases -->
+<div class="modal fade" id="dailydeath" tabindex="-1" role="dialog" aria-labelledby="dailydeathTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dailydeathTitle">Daily Based Death Graph</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <canvas id="daily-death" width="800" height="500"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- daily recoverd_case -->
+<div class="modal fade" id="dailyrecoverd" tabindex="-1" role="dialog" aria-labelledby="dailyrecoverdTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dailyrecoverdTitle">Daily Based Recovered Graph</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <canvas id="daily-recovered" width="800" height="500"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- daily tested_cases -->
+<div class="modal fade" id="dailytested" tabindex="-1" role="dialog" aria-labelledby="dailytestedTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dailytestedTitle">Daily Based Tested Graph</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <canvas id="daily-tested" width="800" height="500"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
 
 {% endblock content %}
