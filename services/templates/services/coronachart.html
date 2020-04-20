@@ -72,7 +72,7 @@
                 }
                 
                 ],
-                labels: [{% for item in qs %}'{{item.date_posted|date:"d M Y"}}',{% endfor %}]
+                labels: [{% for item in qs %}'{{item.date_posted|date:"d M"}}',{% endfor %}]
             },
             options: {
 
@@ -83,7 +83,7 @@
 
                     xAxes: [{
                         ticks: {
-                        autoSkip: false,
+                        autoSkip: true,
                         maxRotation: 90,
                         minRotation: 90
                         }
@@ -150,7 +150,7 @@
                 }
                 
                 ],
-                labels: [{% for item in qs %}'{{item.date_posted|date:"d M Y"}}',{% endfor %}]
+                labels: [{% for item in qs %}'{{item.date_posted|date:"d M"}}',{% endfor %}]
             },
             options: {
 
@@ -161,7 +161,7 @@
 
                     xAxes: [{
                         ticks: {
-                        autoSkip: false,
+                        autoSkip: true,
                         maxRotation: 90,
                         minRotation: 90
                         }
@@ -264,6 +264,13 @@
 
     });
 </script>
+
+<style>
+    .card-title{
+        color:rgb(223, 223, 223);
+        align: center;
+    }
+</style>
 {% endblock script %}
 
 
@@ -271,6 +278,82 @@
 <br/> <br/>
 <br/> <br/> 
 <div class="container">
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            
+            <div class="col-md">
+                <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Today Confirmed Cases</h3></div>
+                <div class="card-body">
+                    <h2 class="card-title text-center">{{qs.last.today_confirmed}}</h2>
+                    
+                </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                    <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Today Death</h3></div>
+                    <div class="card-body">
+                        <h2 class="card-title text-center">{{qs.last.today_death}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Today Recovered</h3></div>
+                <div class="card-body">
+                    <h2 class="card-title text-center">{{qs.last.today_recovered}}</h2>
+                </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Today Tested</h3></div>
+                    <div class="card-body">
+                        <h2 class="card-title text-center">{{qs.last.today_tested}}</h2>
+                    </div>
+                    </div>
+                </div>
+        </div>
+        <br>
+        <div class="row justify-content-md-center">
+            
+            <div class="col-md">
+                <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Total Confirmed Cases</h3></div>
+                <div class="card-body">
+                    <h2 class="card-title text-center">{{qs.last.total_confirmed}}</h2>
+                    
+                </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                    <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Total Death</h3></div>
+                    <div class="card-body">
+                        <h2 class="card-title text-center">{{qs.last.total_death}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Total Recovered</h3></div>
+                <div class="card-body">
+                    <h2 class="card-title text-center">{{qs.last.total_recovered}}</h2>
+                </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Total Tested</h3></div>
+                    <div class="card-body">
+                        <h2 class="card-title text-center">{{qs.last.total_tested}}</h2>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
 
     <div class="row">
       <div class="col-sm">

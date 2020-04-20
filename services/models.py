@@ -45,6 +45,9 @@ class Coronacounter(models.Model):
     today_death = models.IntegerField()
     total_death = models.IntegerField()
 
+    today_tested = models.IntegerField(blank=True,default=0)
+    total_tested = models.IntegerField(blank=True,default=0)
+
     total_quarantine = models.IntegerField(null=True,blank=True)
     released_quarantine = models.IntegerField(null=True,blank=True)
     present_quarantine = models.IntegerField(null=True,blank=True)
