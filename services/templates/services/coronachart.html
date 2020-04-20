@@ -397,6 +397,177 @@
             }
         });
 
+        //Total confirmed 
+        var ctx = document.getElementById('total-confirmed').getContext('2d');
+        var color=["#474747"];
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Total Confirmed',
+                    backgroundColor: "transparent",
+                    borderColor: color[0],
+                    pointBackgroundColor: color[0],
+                    pointBorderColor: color[0],
+                    pointHoverBackgroundColor:color[0],
+                 pointHoverBorderColor: color[0],
+                    data: [{% for item in qs %}{{item.total_confirmed}},{% endfor %}],
+                
+                    borderColor: color[0],
+                
+                }
+                
+                ],
+                labels: [{% for item in qs %}'{{item.date_posted|date:"d M"}}',{% endfor %}]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                        autoSkip: true,
+                        maxRotation: 90,
+                        minRotation: 90
+                        }
+                    }],
+
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        //Total Death 
+        var ctx = document.getElementById('total-death').getContext('2d');
+        var color=["#c70000"];
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Total Death',
+                    backgroundColor: "transparent",
+                    borderColor: color[0],
+                    pointBackgroundColor: color[0],
+                    pointBorderColor: color[0],
+                    pointHoverBackgroundColor:color[0],
+                 pointHoverBorderColor: color[0],
+                    data: [{% for item in qs %}{{item.total_death}},{% endfor %}],
+                
+                    borderColor: color[0],
+                
+                }
+                
+                ],
+                labels: [{% for item in qs %}'{{item.date_posted|date:"d M"}}',{% endfor %}]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                        autoSkip: true,
+                        maxRotation: 90,
+                        minRotation: 90
+                        }
+                    }],
+
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        //Total recovered 
+        var ctx = document.getElementById('total-recovered').getContext('2d');
+        var color=["#009c05"];
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Total Recovered',
+                    backgroundColor: "transparent",
+                    borderColor: color[0],
+                    pointBackgroundColor: color[0],
+                    pointBorderColor: color[0],
+                    pointHoverBackgroundColor:color[0],
+                 pointHoverBorderColor: color[0],
+                    data: [{% for item in qs %}{{item.total_recovered}},{% endfor %}],
+                
+                    borderColor: color[0],
+                
+                }
+                
+                ],
+                labels: [{% for item in qs %}'{{item.date_posted|date:"d M"}}',{% endfor %}]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                        autoSkip: true,
+                        maxRotation: 90,
+                        minRotation: 90
+                        }
+                    }],
+
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        //Total tested 
+        var ctx = document.getElementById('total-tested').getContext('2d');
+        var color=["#474747"];
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Total Tested',
+                    backgroundColor: "transparent",
+                    borderColor: color[0],
+                    pointBackgroundColor: color[0],
+                    pointBorderColor: color[0],
+                    pointHoverBackgroundColor:color[0],
+                 pointHoverBorderColor: color[0],
+                    data: [{% for item in qs %}{{item.total_tested}},{% endfor %}],
+                
+                    borderColor: color[0],
+                
+                }
+                
+                ],
+                labels: [{% for item in qs %}'{{item.date_posted|date:"d M"}}',{% endfor %}]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                        autoSkip: true,
+                        maxRotation: 90,
+                        minRotation: 90
+                        }
+                    }],
+
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        
+
 
     });
 
@@ -483,6 +654,9 @@
                     <h2 class="card-title text-center">{{qs.last.total_confirmed}}</h2>
                     
                 </div>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#totalconfirmed">
+                    Total Based Confirmed Graph
+                </button>
                 </div>
             </div>
             <div class="col-md">
@@ -491,6 +665,9 @@
                     <div class="card-body">
                         <h2 class="card-title text-center">{{qs.last.total_death}}</h2>
                     </div>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#totaldeath">
+                        Total Based Death Graph
+                    </button>
                 </div>
             </div>
             <div class="col-md">
@@ -499,6 +676,9 @@
                 <div class="card-body">
                     <h2 class="card-title text-center">{{qs.last.total_recovered}}</h2>
                 </div>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#totalrecovered">
+                    Total Based Recovered Graph
+                </button>
                 </div>
             </div>
             <div class="col-md">
@@ -507,6 +687,9 @@
                     <div class="card-body">
                         <h2 class="card-title text-center">{{qs.last.total_tested}}</h2>
                     </div>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#totaltested">
+                        Total Based Tested Graph
+                    </button>
                     </div>
                 </div>
         </div>
@@ -532,6 +715,7 @@
             <h1>Isolation Chart</h1> 
           <canvas id="totalIsolation" width="400" height="300"></canvas>
         </div>
+        
       </div>
      
   </div>
@@ -611,6 +795,89 @@
         </div>
         <div class="modal-body">
             <canvas id="daily-tested" width="800" height="500"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- total -->
+  <!-- Total confirmed_case -->
+<div class="modal fade" id="totalconfirmed" tabindex="-1" role="dialog" aria-labelledby="totalconfirmedTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="totalconfirmedTitle"> Total Based Confirmed Graph</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <canvas id="total-confirmed" width="800" height="500"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total Death_cases -->
+<div class="modal fade" id="totaldeath" tabindex="-1" role="dialog" aria-labelledby="totaleathTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="totaldeathTitle">Total Based Death Graph</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <canvas id="total-death" width="800" height="500"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Total recoverd_case -->
+<div class="modal fade" id="totalrecovered" tabindex="-1" role="dialog" aria-labelledby="totalrecoveredTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="totalrecoveredTitle">Total Based Recovered Graph</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <canvas id="total-recovered" width="800" height="500"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total tested_cases -->
+<div class="modal fade" id="totaltested" tabindex="-1" role="dialog" aria-labelledby="totaltestedTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="totaltestedTitle">Total Based Tested Graph</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <canvas id="total-tested" width="800" height="500"></canvas>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
