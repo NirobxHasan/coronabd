@@ -187,6 +187,69 @@
         });
 
 
+
+        //tested vs confirmed
+        var ctx = document.getElementById('testvscases').getContext('2d');
+        var color=["#00709c","#c70000"];
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Tested',
+                   
+                    borderColor: color[0],
+                    pointBackgroundColor: color[0],
+                    pointBorderColor: color[0],
+                    pointHoverBackgroundColor:color[0],
+                    pointHoverBorderColor: color[0],
+                    data: [{% for item in qs %}{{item.total_tested}},{% endfor %}],
+                
+                    borderColor: color[0],
+                
+                }, 
+                {
+                    label: 'Confirmed',
+                   
+                    borderColor: color[1],
+                    pointBackgroundColor: color[1],
+                    pointBorderColor: color[1],
+                    pointHoverBackgroundColor:color[1],
+                    pointHoverBorderColor: color[1],
+                    data: [{% for item in qs %}{{item.total_confirmed}},{% endfor %}],
+                    borderColor: color[1],
+
+                    // Changes this dataset to become a line
+                    type: 'line'
+                }
+                
+                ],
+                labels: [{% for item in qs %}'{{item.date_posted|date:"d M"}}',{% endfor %}]
+            },
+            options: {
+
+                
+
+                scales: {
+
+
+                    xAxes: [{
+                        ticks: {
+                        autoSkip: true,
+                        maxRotation: 90,
+                        minRotation: 90
+                        }
+                    }],
+
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
         //Total quarantine
         var ctx = document.getElementById('totalQuarantine').getContext('2d');
         var color=["#ff6384","#5959e6","#2babab","#8c4d15","#8bc34a","#607d8b","#009688"];
@@ -761,6 +824,12 @@
         <canvas id="dailyBased" width="400" height="300"></canvas>
       </div>
     </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        <h1>Tested VS Confirmed cases Chart</h1>
+    </div>
+    <canvas id="testvscases" width="500" height="200"></canvas>
+    
     <div class="row">
         <div class="col-sm">
             <h1>Quarantine Chart</h1>  
