@@ -65,7 +65,11 @@ def CoronaChartView(request):
         'Rajshahi_total':Rajshahi_total,
         'Dhakacity_total':Dhakacity_total,
         'total':total,
-        'Unidentified_total':Unidentified_total
+        'Unidentified_total':Unidentified_total,
+        'confirmed_growthrate':((qs[len(qs)-1].total_confirmed-qs[len(qs)-2].total_confirmed)/qs[len(qs)-2].total_confirmed)*100,
+        'death_growthrate':((qs[len(qs)-1].total_death-qs[len(qs)-2].total_death)/qs[len(qs)-2].total_death)*100,
+        'recovered_growthrate':((qs[len(qs)-1].total_recovered-qs[len(qs)-2].total_recovered)/qs[len(qs)-2].total_recovered)*100,
+        'tested_growthrate':((qs[len(qs)-1].total_tested-qs[len(qs)-2].total_tested)/qs[len(qs)-2].total_tested)*100,
     }        
     return render(request,'services/coronachart.html',context)
 
@@ -120,7 +124,8 @@ def confirmedArea(request):
         'Rajshahi_total':Rajshahi_total,
         'Dhakacity_total':Dhakacity_total,
         'total':total,
-        'Unidentified_total':Unidentified_total
+        'Unidentified_total':Unidentified_total,
+        
     }        
     return render(request, 'services/confirmedlist.html',context)
 
