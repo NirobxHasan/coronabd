@@ -715,7 +715,10 @@
                 <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
                 <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Today Confirmed Cases</h3></div>
                 <div class="card-body">
-                    <h2 class="card-title text-center">{{qs.last.today_confirmed}}</h2>
+                    <h2 class="card-title text-center">{{qs.last.today_confirmed}} </h2>
+                    
+                    
+                    
                     
                 </div>
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dailyconfirmed">
@@ -728,6 +731,7 @@
                     <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Today Death</h3></div>
                     <div class="card-body">
                         <h2 class="card-title text-center">{{qs.last.today_death}}</h2>
+
                         
                     </div>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dailydeath">
@@ -767,6 +771,7 @@
                 <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Total Confirmed Cases</h3></div>
                 <div class="card-body">
                     <h2 class="card-title text-center">{{qs.last.total_confirmed}}</h2>
+                    <h3 class="text-center"><span class="badge badge-light">Growth Rate: {{confirmed_growthrate|stringformat:".2f"}}%</span></h3>
                     
                 </div>
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#totalconfirmed">
@@ -779,6 +784,7 @@
                     <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Total Death</h3></div>
                     <div class="card-body">
                         <h2 class="card-title text-center">{{qs.last.total_death}}</h2>
+                        <h3 class="text-center"><span class="badge badge-light">Growth Rate: {{death_growthrate|stringformat:".2f"}}%</span></h3>
                     </div>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#totaldeath">
                         Total Based Death Graph
@@ -790,6 +796,7 @@
                 <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Total Recovered</h3></div>
                 <div class="card-body">
                     <h2 class="card-title text-center">{{qs.last.total_recovered}}</h2>
+                    <h3 class="text-center"><span class="badge badge-light">Growth Rate: {{recovered_growthrate|stringformat:".2f"}}%</span></h3>
                 </div>
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#totalrecovered">
                     Total Based Recovered Graph
@@ -801,6 +808,7 @@
                     <div class="card-header text-center"><h3 style="color:rgb(223, 223, 223);">Total Tested</h3></div>
                     <div class="card-body">
                         <h2 class="card-title text-center">{{qs.last.total_tested}}</h2>
+                        <h3 class="text-center"><span class="badge badge-light">Growth Rate: {{tested_growthrate|stringformat:".2f"}}%</span></h3>
                     </div>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#totaltested">
                         Total Based Tested Graph
