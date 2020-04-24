@@ -22,7 +22,7 @@ urlpatterns = [
     path('', include('maps.urls')),
     path('', include('services.urls')),
     path('', include('users.urls')),
-    path('', include('news.urls')),
+    
     path('admin/', admin.site.urls),
 ]
 if settings.DEBUG:

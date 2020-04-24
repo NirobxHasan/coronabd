@@ -31,3 +31,4 @@ def map(request):
                 'isolation':isolation,
                 'lockdown':lockdown,
                 'counter':counter})
+

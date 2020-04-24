@@ -59,11 +59,7 @@ class Coronacounter(models.Model):
 
     def __str__(self):
         return str(self.date_posted.strftime("%d-%m-%Y"))
-
-
-
-
-
+    
 
 class Division(models.Model):
     division = models.CharField(max_length=32)
